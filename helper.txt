@@ -1,0 +1,36 @@
+({
+    fetchData:function(component,event,helper)
+    {
+        var action=component.get("c.fetchCovid19Data");
+        action.setCallback(this,function(response)
+        {
+                           var state1=response.getState();
+        if(state1=='SUCCESS')
+        {
+            var result=JSON.parse(JSON.stringify(response.getReturnValue()));
+           
+                
+                 var dataArry=new Array();
+                 for(var i=0;i<result.statewise.length;i++)
+                 {
+      
+                 var fetchData={
+                 id:i,
+                 STATE:result.statewise[i].state,
+                 CNFMD_CASE:result.statewise[i].confirmed,
+                 ACTIVE_CASE:result.statewise[i].active,
+                 RCVRD_CASE:result.statewise[i].recovered,
+                 DEATH:result.statewise[i].deaths
+                };
+                dataArry.push(fetchData);
+                }
+                dataArry.shift();
+               
+                component.set('v.data',dataArry);
+                                   
+                           }
+        
+});
+              $A.enqueueAction(action);
+    }
+})

@@ -1,0 +1,12 @@
+({
+	doInit : function(component,event,helper) {
+         component.set('v.columns',[
+                {label:'STATE',fieldName:'STATE',type:'text',wrapText:true},
+                {label:'CNFMD',fieldName:'CNFMD_CASE',type:'number',cellAttributes:{alignment:'left'}},
+                {label:'ACTIVE',fieldName:'ACTIVE_CASE',type:'text'},
+                {label:'RCVRD',fieldName:'RCVRD_CASE',type:'text'},
+                {label:'DECEASED',fieldName:'DEATH',type:'text'}
+            ]);
+		helper.fetchData(component,event,helper);
+	}
+})
